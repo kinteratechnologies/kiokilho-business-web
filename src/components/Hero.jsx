@@ -58,7 +58,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section style={{ 
+    <section style={{
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
@@ -68,7 +68,7 @@ export default function Hero() {
       position: 'relative',
       overflow: 'hidden'
     }}>
-      
+
       {/* Full Background Image Slider */}
       <div style={{
         position: 'absolute',
@@ -87,15 +87,15 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            alt="Tas Goni Premium Kiokilho" 
-            style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }} 
+            alt="Tas Goni Premium Kiokilho"
+            style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
           />
         </AnimatePresence>
 
         {/* Overlay to ensure text readability and fade smoothly into the white background below */}
-        <div style={{ 
-          position: 'absolute', 
-          inset: 0, 
+        <div style={{
+          position: 'absolute',
+          inset: 0,
           background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 60%, #ffffff 100%)',
           zIndex: 1,
           pointerEvents: 'none'
@@ -103,7 +103,7 @@ export default function Hero() {
       </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center', color: '#ffffff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-        
+
         {/* We use a fixed minHeight wrapper so the button doesn't jump up and down during text transition */}
         <div style={{ minHeight: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
           <AnimatePresence mode="wait">
@@ -114,10 +114,10 @@ export default function Hero() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span style={{ 
-                fontSize: '0.9rem', 
-                fontWeight: 600, 
-                textTransform: 'uppercase', 
+              <span style={{
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
                 letterSpacing: '0.15em',
                 color: '#e5d3b3',
                 marginBottom: '1.5rem',
@@ -125,14 +125,14 @@ export default function Hero() {
                 fontFamily: 'Outfit, sans-serif'
               }}>{slides[currentSlide].kicker}</span>
 
-              <h1 
+              <h1
                 className="display-1"
                 style={{ marginBottom: '1.5rem', color: '#ffffff' }}
               >
                 {slides[currentSlide].title1} <br /><span style={{ background: 'linear-gradient(135deg, #ffffff 0%, #e5d3b3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{slides[currentSlide].title2}</span>
               </h1>
 
-              <p 
+              <p
                 className="lead"
                 style={{ marginBottom: '0', color: '#f5f5f7' }}
               >
@@ -142,15 +142,15 @@ export default function Hero() {
           </AnimatePresence>
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
           style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginTop: '2rem' }}
         >
-          <button 
+          <button
             onClick={() => navigate('/products')}
-            style={{ 
+            style={{
               display: 'flex',
               alignItems: 'center',
               gap: '16px',
@@ -199,7 +199,7 @@ export default function Hero() {
         {/* Carousel indicators */}
         <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center', marginTop: '4rem' }}>
           {slides.map((_, idx) => (
-            <div 
+            <div
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               style={{

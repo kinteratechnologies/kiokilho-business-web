@@ -314,32 +314,34 @@ export default function AIAssistant() {
         )}
       </AnimatePresence>
 
-      {/* Floating Action Button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        style={{
-          position: 'fixed',
-          bottom: 'clamp(20px, 5vh, 30px)',
-          right: 'clamp(10px, 3vw, 30px)',
-          width: 'clamp(55px, 15vw, 65px)',
-          height: 'clamp(55px, 15vw, 65px)',
-          borderRadius: '50%',
-          background: 'var(--text-primary)',
-          color: '#ffffff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: 'none',
-          boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-          cursor: 'pointer',
-          zIndex: 1000,
-          padding: 0
-        }}
-      >
-        {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
-      </motion.button>
+      {/* Floating Action Button (Only visible when chat is closed) */}
+      {!isOpen && (
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setIsOpen(true)}
+          style={{
+            position: 'fixed',
+            bottom: 'clamp(20px, 5vh, 30px)',
+            right: 'clamp(10px, 3vw, 30px)',
+            width: 'clamp(55px, 15vw, 65px)',
+            height: 'clamp(55px, 15vw, 65px)',
+            borderRadius: '50%',
+            background: 'var(--text-primary)',
+            color: '#ffffff',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: 'none',
+            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
+            cursor: 'pointer',
+            zIndex: 1000,
+            padding: 0
+          }}
+        >
+          <MessageCircle size={28} />
+        </motion.button>
+      )}
     </>
   );
 }

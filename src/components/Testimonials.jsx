@@ -117,11 +117,11 @@ export default function Testimonials() {
             <div
               key={idx}
               style={{
-                width: '400px',
+                width: 'clamp(280px, 80vw, 400px)',
                 flexShrink: 0,
                 background: 'var(--surface-color-light)',
                 borderRadius: '24px',
-                padding: '2.5rem',
+                padding: 'clamp(1.5rem, 5vw, 2.5rem)',
                 border: '1px solid var(--border-color)',
                 boxShadow: '0 4px 24px rgba(0,0,0,0.03)',
                 display: 'flex',
@@ -140,7 +140,7 @@ export default function Testimonials() {
                 </div>
                 <p style={{ 
                   fontFamily: 'Playfair Display, serif', 
-                  fontSize: '1.2rem', 
+                  fontSize: 'clamp(1rem, 3.5vw, 1.2rem)', 
                   fontStyle: 'italic',
                   lineHeight: 1.6,
                   color: 'var(--text-primary)',

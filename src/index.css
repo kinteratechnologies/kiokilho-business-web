@@ -195,4 +195,20 @@ button:hover {
   .mobile-flex-col {
     flex-direction: column !important;
   }
+
+  .product-modal {
+    flex-direction: column !important;
+    overflow-y: auto !important;
+  }
+  
+  .product-modal-img-section {
+    flex: none !important;
+    height: 350px !important;
+  }
+  
+  .product-modal-content-section {
+    flex: none !important;
+    padding: 1.5rem !important;
+    overflow-y: visible !important;
+  }
 }

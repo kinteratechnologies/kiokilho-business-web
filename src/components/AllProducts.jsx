@@ -81,8 +81,8 @@ export default function AllProducts() {
     else if (cat === 'Backpack') navigate('/products?q=Backpack');
   };
 
-  const filteredProducts = allProducts.filter(p => 
-    p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+  const filteredProducts = allProducts.filter(p =>
+    p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     p.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
     p.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -108,7 +108,7 @@ export default function AllProducts() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              style={{ fontSize: '4rem', fontFamily: 'Playfair Display, serif', marginBottom: '1rem' }}
+              style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', fontFamily: 'Playfair Display, serif', marginBottom: '1rem' }}
             >
               Koleksi Eksklusif
             </motion.h1>
@@ -123,15 +123,15 @@ export default function AllProducts() {
           </div>
 
           {/* Filter Bar */}
-          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '2rem', marginBottom: '4rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '2rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 'clamp(1rem, 3vw, 2rem)', marginBottom: '4rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '2rem' }}>
             {['Semua', 'Tote Bag', 'Sling Bag', 'Backpack'].map((cat, idx) => {
               const isActive = cat === activeTab;
               return (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   onClick={() => handleTabClick(cat)}
                   style={{
-                    fontSize: '1rem',
+                    fontSize: 'clamp(0.85rem, 3vw, 1rem)',
                     fontWeight: isActive ? 600 : 400,
                     color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                     cursor: 'pointer',
@@ -148,7 +148,7 @@ export default function AllProducts() {
           </div>
 
           {/* Product Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '3rem' }}>
             {filteredProducts.length === 0 ? (
               <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '5rem 0', color: 'var(--text-secondary)' }}>
                 <h3 style={{ fontSize: '2rem', fontFamily: 'Playfair Display, serif', color: 'var(--text-primary)', marginBottom: '1rem' }}>Hasil tidak ditemukan</h3>
@@ -175,7 +175,7 @@ export default function AllProducts() {
                   whileHover="hover"
                   onClick={() => { setSelectedProduct(product); setActiveImageIndex(0); }}
                 >
-                  <div style={{ height: '400px', background: '#000', position: 'relative', overflow: 'hidden' }}>
+                  <div style={{ height: 'clamp(250px, 40vw, 400px)', background: '#000', position: 'relative', overflow: 'hidden' }}>
                     {product.tag && (
                       <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', zIndex: 10, background: 'var(--accent-color)', color: '#fff', padding: '6px 12px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                         {product.tag}
@@ -189,10 +189,10 @@ export default function AllProducts() {
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                   </div>
-                  <div style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+                  <div style={{ padding: 'clamp(1.5rem, 4vw, 2.5rem)', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
                     <div>
                       <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem', fontFamily: 'Outfit, sans-serif' }}>{product.category}</div>
-                      <h3 style={{ fontSize: '1.8rem', fontFamily: 'Playfair Display, serif', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{product.name}</h3>
+                      <h3 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontFamily: 'Playfair Display, serif', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{product.name}</h3>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
@@ -243,10 +243,37 @@ export default function AllProducts() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '2rem'
+              padding: 'clamp(1rem, 3vw, 2rem)'
             }}
             onClick={() => setSelectedProduct(null)}
           >
+            {/* Close Button fixed to top-right of screen */}
+            <button
+              onClick={() => setSelectedProduct(null)}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                background: '#ffffff',
+                border: '1px solid var(--border-color)',
+                width: '48px',
+                height: '48px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                zIndex: 100000,
+                color: 'var(--text-primary)',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+              }}
+              onMouseOver={(e) => { e.currentTarget.style.background = 'var(--text-primary)'; e.currentTarget.style.color = '#fff'; }}
+              onMouseOut={(e) => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = 'var(--text-primary)'; }}
+            >
+              <X size={36} strokeWidth={2.5} />
+            </button>
+
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -264,37 +291,11 @@ export default function AllProducts() {
                 flexDirection: 'row',
                 position: 'relative'
               }}
+              className="product-modal"
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
             >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProduct(null)}
-                style={{
-                  position: 'absolute',
-                  top: '1.5rem',
-                  right: '1.5rem',
-                  background: 'rgba(0,0,0,0.05)',
-                  border: 'none',
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  zIndex: 10,
-                  color: 'var(--text-primary)',
-                  transition: 'all 0.2s ease',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-                }}
-                onMouseOver={(e) => { e.currentTarget.style.background = 'var(--text-primary)'; e.currentTarget.style.color = '#fff'; }}
-                onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(0,0,0,0.05)'; e.currentTarget.style.color = 'var(--text-primary)'; }}
-              >
-                <X size={28} />
-              </button>
-
               {/* Modal Image Section */}
-              <div style={{ flex: '1 1 50%', background: '#f5f5f7', display: 'flex', flexDirection: 'column' }}>
+              <div className="product-modal-img-section" style={{ flex: '1 1 50%', background: '#f5f5f7', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ flex: 1, position: 'relative' }}>
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -329,28 +330,28 @@ export default function AllProducts() {
               </div>
 
               {/* Modal Content */}
-              <div style={{ flex: '1 1 50%', padding: '4rem 3rem', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+              <div className="product-modal-content-section" style={{ flex: '1 1 50%', padding: '4rem 3rem', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
                 <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', fontFamily: 'Outfit, sans-serif' }}>
                   {selectedProduct.category}
                 </div>
-                <h2 style={{ fontSize: '2.5rem', fontFamily: 'Playfair Display, serif', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>
+                <h2 style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)', fontFamily: 'Playfair Display, serif', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>
                   {selectedProduct.name}
                 </h2>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                   {selectedProduct.originalPrice && (
-                    <span style={{ fontSize: '1.3rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>
+                    <span style={{ whiteSpace: 'nowrap', fontSize: '1.3rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>
                       {selectedProduct.originalPrice}
                     </span>
                   )}
-                  <div style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>
+                  <div style={{ whiteSpace: 'nowrap', fontSize: '1.8rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>
                     {selectedProduct.price}
                   </div>
                 </div>
 
                 {/* Dimensions Box */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem', padding: '1rem', background: '#f9f9fb', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                  <span style={{ fontWeight: 600, fontFamily: 'Outfit, sans-serif', color: 'var(--text-primary)' }}>Dimensi:</span>
-                  <span style={{ color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>{selectedProduct.dimensions}</span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', marginBottom: '2rem', padding: '1rem 1.2rem', background: '#f9f9fb', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                  <span style={{ fontWeight: 600, fontFamily: 'Outfit, sans-serif', color: 'var(--text-primary)', fontSize: '0.9rem' }}>Dimensi:</span>
+                  <span style={{ color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif', fontSize: '1.05rem' }}>{selectedProduct.dimensions}</span>
                 </div>
 
                 <div style={{ width: '40px', height: '2px', background: 'var(--accent-color)', marginBottom: '2rem' }}></div>

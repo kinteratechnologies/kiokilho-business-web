@@ -269,7 +269,7 @@ export default function Navbar() {
               </button>
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', fontSize: '2rem', fontFamily: 'Playfair Display, serif', fontWeight: 500 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', fontSize: '1.5rem', fontFamily: 'Playfair Display, serif', fontWeight: 500 }}>
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Beranda</Link>
               <Link to="/products" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Koleksi</Link>
               <Link to="/#bespoke" onClick={() => {
@@ -287,7 +287,7 @@ export default function Navbar() {
             </div>
 
             <div style={{ marginTop: 'auto', paddingBottom: '2rem' }}>
-              <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', justifyContent: 'center', padding: '1.2rem', background: '#25D366', color: '#1d1d1f', borderRadius: '50px', textDecoration: 'none', fontWeight: 600, fontFamily: 'Outfit, sans-serif', fontSize: '1.1rem' }}>
+              <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', justifyContent: 'center', padding: '1rem', background: '#25D366', color: '#1d1d1f', borderRadius: '50px', textDecoration: 'none', fontWeight: 600, fontFamily: 'Outfit, sans-serif', fontSize: '1rem' }}>
                 Chat via WhatsApp
               </a>
             </div>

@@ -20,6 +20,7 @@ import Story from './components/Story'
 import Careers from './components/Careers'
 import Investors from './components/Investors'
 import Ethics from './components/Ethics'
+import CookieConsent from './components/CookieConsent'
 import './App.css'
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
           </Routes>
           <Footer />
           <AIAssistant />
+          <CookieConsent />
         </div>
       </Router>
     </CartProvider>

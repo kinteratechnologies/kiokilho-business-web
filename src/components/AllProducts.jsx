@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, X, ShoppingCart, Plus } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import toteImg from '../assets/tote_bag.png';
 import slingImg from '../assets/sling_bag.png';
@@ -59,10 +59,27 @@ export default function AllProducts() {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const { addToCart } = useCart();
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Parse search query
   const searchParams = new URLSearchParams(location.search);
   const searchQuery = searchParams.get('q') || '';
+
+  const getActiveTab = () => {
+    const q = searchQuery.toLowerCase();
+    if (q.includes('tote')) return 'Tote Bag';
+    if (q.includes('sling')) return 'Sling Bag';
+    if (q.includes('pack')) return 'Backpack';
+    return 'Semua';
+  };
+  const activeTab = getActiveTab();
+
+  const handleTabClick = (cat) => {
+    if (cat === 'Semua') navigate('/products');
+    else if (cat === 'Tote Bag') navigate('/products?q=Tote');
+    else if (cat === 'Sling Bag') navigate('/products?q=Sling');
+    else if (cat === 'Backpack') navigate('/products?q=Backpack');
+  };
 
   const filteredProducts = allProducts.filter(p => 
     p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -105,21 +122,29 @@ export default function AllProducts() {
             </motion.p>
           </div>
 
-          {/* Filter Bar (Visual only for now, could add state later) */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '4rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '2rem' }}>
-            {['Semua', 'Tote Bag', 'Sling Bag', 'Backpack'].map((cat, idx) => (
-              <div key={idx} style={{
-                fontSize: '1rem',
-                fontWeight: cat === 'Semua' ? 600 : 400,
-                color: cat === 'Semua' ? 'var(--text-primary)' : 'var(--text-secondary)',
-                cursor: 'pointer',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                fontFamily: 'Outfit, sans-serif'
-              }}>
-                {cat}
-              </div>
-            ))}
+          {/* Filter Bar */}
+          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '2rem', marginBottom: '4rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '2rem' }}>
+            {['Semua', 'Tote Bag', 'Sling Bag', 'Backpack'].map((cat, idx) => {
+              const isActive = cat === activeTab;
+              return (
+                <div 
+                  key={idx} 
+                  onClick={() => handleTabClick(cat)}
+                  style={{
+                    fontSize: '1rem',
+                    fontWeight: isActive ? 600 : 400,
+                    color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                    cursor: 'pointer',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    fontFamily: 'Outfit, sans-serif',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  {cat}
+                </div>
+              );
+            })}
           </div>
 
           {/* Product Grid */}

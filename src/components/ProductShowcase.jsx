@@ -80,7 +80,7 @@ export default function ProductShowcase() {
               
               <div>
                 <motion.button 
-                  onClick={(e) => handleAddToCart(e, { id: 1, name: "Kiokilho Classic Tote", price: "Rp 499.000", image: toteImg })}
+                  onClick={(e) => handleAddToCart(e, { id: 1, name: "Kiokilho Classic Tote", price: "Rp 499.000", originalPrice: "Rp 799.000", image: toteImg })}
                   variants={{
                     hover: { backgroundColor: 'var(--accent-color)', color: '#ffffff', gap: '1.2rem' }
                   }}
@@ -157,7 +157,7 @@ export default function ProductShowcase() {
                     <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 349.000</div>
                   </div>
                   <motion.div 
-                    onClick={(e) => handleAddToCart(e, { id: 2, name: "Urban Sling", price: "Rp 349.000", image: slingImg })}
+                    onClick={(e) => handleAddToCart(e, { id: 2, name: "Urban Sling", price: "Rp 349.000", originalPrice: "Rp 599.000", image: slingImg })}
                     variants={{ hover: { x: 8, color: 'var(--accent-color)' } }}
                     style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'color 0.3s ease', cursor: 'pointer' }}
                   >
@@ -203,7 +203,7 @@ export default function ProductShowcase() {
                     <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 899.000</div>
                   </div>
                   <motion.div 
-                    onClick={(e) => handleAddToCart(e, { id: 3, name: "Explorer Pack", price: "Rp 899.000", image: backpackImg })}
+                    onClick={(e) => handleAddToCart(e, { id: 3, name: "Explorer Pack", price: "Rp 899.000", originalPrice: "Rp 1.299.000", image: backpackImg })}
                     variants={{ hover: { x: 8, color: 'var(--accent-color)' } }}
                     style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'color 0.3s ease', cursor: 'pointer' }}
                   >

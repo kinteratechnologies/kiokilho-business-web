@@ -46,6 +46,11 @@ export function CartProvider({ children }) {
   const parsePrice = (priceStr) => parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
 
   const totalPrice = cartItems.reduce((acc, item) => acc + (parsePrice(item.price) * item.quantity), 0);
+  
+  const totalOriginalPrice = cartItems.reduce((acc, item) => {
+    const orig = item.originalPrice ? parsePrice(item.originalPrice) : parsePrice(item.price);
+    return acc + (orig * item.quantity);
+  }, 0);
 
   const formatPrice = (num) => `Rp ${num.toLocaleString('id-ID')}`;
 
@@ -61,6 +66,7 @@ export function CartProvider({ children }) {
       clearCart,
       totalItems,
       totalPrice,
+      totalOriginalPrice,
       formatPrice
     }}>
       {children}

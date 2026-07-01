@@ -57,10 +57,11 @@ export default function Footer() {
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
             Hak Cipta © {new Date().getFullYear()} Kiokilho, Semua hak dilindungi.
           </p>
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             <Link to="/privacy" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', textDecoration: 'none' }}>Kebijakan Privasi</Link>
             <Link to="/terms" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', textDecoration: 'none' }}>Syarat Penggunaan</Link>
             <Link to="/legal" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', textDecoration: 'none' }}>Legal</Link>
+            <Link to="/developer" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', textDecoration: 'none' }}>Kebijakan Developer</Link>
           </div>
         </div>
       </div>

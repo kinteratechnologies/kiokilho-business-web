@@ -1,0 +1,70 @@
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+export default function DeveloperPolicy() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div style={{ paddingTop: '100px', paddingBottom: '5rem', minHeight: '100vh', background: 'var(--bg-color)', color: 'var(--text-primary)' }}>
+      <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '3rem', marginBottom: '2rem' }}>Kebijakan Developer</h1>
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '2rem' }}>
+            Informasi mengenai pengembangan dan pengelolaan teknis platform Kiokilho.
+          </p>
+          <div style={{ fontSize: '1.05rem', lineHeight: 1.8, display: 'flex', flexDirection: 'column', gap: '1.5rem', fontFamily: 'Outfit, sans-serif' }}>
+            <p>
+              Platform e-commerce eksklusif Kiokilho dirancang, dikembangkan, dan dipelihara dengan standar industri perangkat lunak tertinggi. Kebijakan ini menguraikan batasan, tanggung jawab teknis, dan hak kekayaan intelektual yang melekat pada pengembangan ekosistem digital ini.
+            </p>
+            
+            <div style={{ background: '#ffffff', padding: '2.5rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: '0 4px 24px rgba(0,0,0,0.03)', marginTop: '1rem', marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--text-primary)', fontWeight: 600 }}>Mitra Pengembang Resmi</h3>
+              <p style={{ marginBottom: '1rem' }}>
+                Seluruh arsitektur teknis, desain antarmuka (UI/UX), sistem animasi spasial, dan infrastruktur komputasi awan dari platform ini dikembangkan secara eksklusif oleh:
+              </p>
+              <h4 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '0.5rem', color: 'var(--accent-color)' }}>PT Codevits Innovation Indonesia</h4>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <strong style={{ minWidth: '90px' }}>Email:</strong>
+                  <a href="mailto:business@codevits.com" style={{ color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>business@codevits.com</a>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <strong style={{ minWidth: '90px' }}>Instagram:</strong>
+                  <a href="https://instagram.com/codevits" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--text-primary)', textDecoration: 'none', fontWeight: 500 }}>
+                    @codevits
+                    <svg width="14" height="14" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'translateY(1px)' }}>
+                      <path fillRule="evenodd" clipRule="evenodd" d="M19.998 3.094 14.638 0l-2.972 5.15H5.432v6.354L0 14.64 3.094 20 0 25.359l5.432 3.137v5.905h5.975L14.638 40l5.36-3.094L25.358 40l3.232-5.6h6.162v-6.01L40 25.359 36.905 20 40 14.641l-5.248-3.03v-6.46h-6.419L25.358 0l-5.36 3.094Zm7.415 11.225 2.254 2.287-11.43 11.5-6.835-6.93 2.244-2.258 4.587 4.581 9.18-9.18Z" fill="#0095F6"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <h3 style={{ fontSize: '1.5rem', marginTop: '1rem', color: 'var(--text-primary)', fontWeight: 600 }}>1. Hak Kekayaan Intelektual (HAKI)</h3>
+            <p>
+              Kode sumber (<em>source code</em>), struktur basis data, pustaka animasi, dan aset antarmuka sistem sepenuhnya berada di bawah perlindungan hak cipta. Segala bentuk rekayasa balik (<em>reverse engineering</em>), penyalinan data (<em>scraping</em>), penguraian kode, atau penyalinan infrastruktur logika tanpa lisensi tertulis dari PT Codevits Innovation Indonesia merupakan pelanggaran kekayaan intelektual berat yang akan ditindak melalui jalur hukum internasional dan yurisdiksi Republik Indonesia.
+            </p>
+
+            <h3 style={{ fontSize: '1.5rem', marginTop: '1rem', color: 'var(--text-primary)', fontWeight: 600 }}>2. Integritas Keamanan dan Infrastruktur</h3>
+            <p>
+              Pengembang bertanggung jawab atas pemeliharaan peladen (<em>server</em>) berkinerja tinggi, jaminan waktu aktif (<em>uptime</em>), serta enkripsi transmisi data menggunakan protokol kriptografi mutakhir. Namun, pengembang berhak melakukan pemeliharaan sistem terencana (<em>maintenance</em>) yang dapat mengakibatkan penghentian layanan sementara demi optimalisasi dan pembaruan keamanan jaringan.
+            </p>
+
+            <h3 style={{ fontSize: '1.5rem', marginTop: '1rem', color: 'var(--text-primary)', fontWeight: 600 }}>3. Batasan Tanggung Jawab Teknis</h3>
+            <p>
+              PT Codevits Innovation Indonesia bertindak murni sebagai arsitek dan penyedia solusi teknologi. Kami <strong>tidak memegang tanggung jawab</strong> atas dinamika operasional bisnis Kiokilho, termasuk namun tidak terbatas pada: manajemen inventaris produk, kelambatan logistik, proses pengembalian dana (<em>refund</em>), kualitas fisik produk, atau perselisihan transaksional antara penjual dan pembeli. Segala keluhan non-teknis harus disalurkan langsung kepada manajemen Kiokilho.
+            </p>
+
+            <h3 style={{ fontSize: '1.5rem', marginTop: '1rem', color: 'var(--text-primary)', fontWeight: 600 }}>4. Pelaporan Celah Keamanan (Bug Bounty)</h3>
+            <p>
+              Jika Anda merupakan pakar keamanan siber atau peneliti yang menemukan celah kerentanan (<em>vulnerability</em>) pada sistem kami, kami sangat menghargai laporan Anda yang dilakukan secara etis. Silakan laporkan temuan teknis Anda secara langsung ke email bisnis kami (<strong>business@codevits.com</strong>) sebelum mempublikasikannya ke ruang publik. Eksploitasi celah keamanan untuk tujuan destruktif akan dilaporkan secara tegas ke otoritas siber berwenang.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}

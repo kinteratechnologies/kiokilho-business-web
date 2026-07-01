@@ -11,6 +11,7 @@ import AIAssistant from './components/AIAssistant'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import TermsOfUse from './components/TermsOfUse'
 import Legal from './components/Legal'
+import DeveloperPolicy from './components/DeveloperPolicy'
 import Warranty from './components/Warranty'
 import Care from './components/Care'
 import Recycling from './components/Recycling'
@@ -72,6 +73,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfUse />} />
             <Route path="/legal" element={<Legal />} />
+            <Route path="/developer" element={<DeveloperPolicy />} />
             <Route path="/warranty" element={<Warranty />} />
             <Route path="/care" element={<Care />} />
             <Route path="/recycling" element={<Recycling />} />

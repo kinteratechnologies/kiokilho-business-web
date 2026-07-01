@@ -6,8 +6,7 @@ export default function Footer() {
     <footer style={{ 
       background: 'var(--surface-color)', 
       padding: '4rem 0 2rem 0',
-      borderTop: '1px solid var(--border-color)',
-      marginTop: '4rem'
+      borderTop: '1px solid var(--border-color)'
     }}>
       <div className="container">
         <div style={{ 

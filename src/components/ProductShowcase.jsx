@@ -17,7 +17,7 @@ export default function ProductShowcase() {
   };
 
   return (
-    <section id="store" style={{ padding: 'clamp(5rem, 10vw, 10rem) 0', background: 'var(--surface-color)', position: 'relative' }}>
+    <section id="store" style={{ paddingTop: 'clamp(5rem, 10vw, 8rem)', paddingBottom: '4rem', background: 'var(--surface-color)', position: 'relative' }}>
       <div className="container">
         
         <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
@@ -220,7 +220,7 @@ export default function ProductShowcase() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}
+            style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}
           >
             <button 
               onClick={() => navigate('/products')}

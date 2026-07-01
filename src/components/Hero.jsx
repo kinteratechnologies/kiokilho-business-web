@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import slide1Lifestyle from '../assets/burlap_bag_lifestyle.png';
 import slide2 from '../assets/hero_slide_2.png';
 import slide3 from '../assets/hero_slide_3.png';
@@ -46,6 +47,7 @@ const slides = [
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -145,7 +147,9 @@ export default function Hero() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
           style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginTop: '2rem' }}
         >
-          <button style={{ 
+          <button 
+            onClick={() => navigate('/products')}
+            style={{ 
             background: '#ffffff', 
             color: '#1d1d1f', 
             padding: '14px 32px',

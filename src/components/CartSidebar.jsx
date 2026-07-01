@@ -60,7 +60,7 @@ export default function CartSidebar() {
             {/* Header */}
             <div style={{ padding: '2.5rem 2rem 1.5rem', borderBottom: '1px solid var(--border-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h2 style={{ fontFamily: 'Playfair Display, serif', margin: 0, fontSize: '1.8rem', color: 'var(--text-primary)' }}>Keranjang</h2>
-              <button onClick={closeCart} style={{ background: 'rgba(0,0,0,0.05)', border: 'none', width: 36, height: 36, borderRadius: '50%', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <button onClick={closeCart} style={{ padding: 0, background: 'rgba(0,0,0,0.05)', border: 'none', width: 36, height: 36, borderRadius: '50%', cursor: 'pointer', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <X size={18} />
               </button>
             </div>
@@ -83,11 +83,11 @@ export default function CartSidebar() {
                       
                       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', background: '#f5f5f7', borderRadius: '999px', padding: '4px 8px' }}>
-                          <button onClick={() => updateQuantity(item.id, -1)} style={{ background: '#fff', borderRadius: '50%', width: 24, height: 24, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}><Minus size={12} /></button>
+                          <button onClick={() => updateQuantity(item.id, -1)} style={{ padding: 0, color: 'var(--text-primary)', background: '#fff', borderRadius: '50%', width: 24, height: 24, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}><Minus size={12} /></button>
                           <span style={{ fontSize: '0.9rem', fontWeight: 600, minWidth: '16px', textAlign: 'center' }}>{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.id, 1)} style={{ background: '#fff', borderRadius: '50%', width: 24, height: 24, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}><Plus size={12} /></button>
+                          <button onClick={() => updateQuantity(item.id, 1)} style={{ padding: 0, color: 'var(--text-primary)', background: '#fff', borderRadius: '50%', width: 24, height: 24, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}><Plus size={12} /></button>
                         </div>
-                        <button onClick={() => removeFromCart(item.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ff4444', display: 'flex', alignItems: 'center' }}>
+                        <button onClick={() => removeFromCart(item.id)} style={{ padding: 0, background: 'none', border: 'none', cursor: 'pointer', color: '#ff4444', display: 'flex', alignItems: 'center' }}>
                           <Trash2 size={16} />
                         </button>
                       </div>

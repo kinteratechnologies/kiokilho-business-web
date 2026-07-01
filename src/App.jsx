@@ -8,6 +8,17 @@ import AllProducts from './components/AllProducts'
 import CartSidebar from './components/CartSidebar'
 import Footer from './components/Footer'
 import AIAssistant from './components/AIAssistant'
+import PrivacyPolicy from './components/PrivacyPolicy'
+import TermsOfUse from './components/TermsOfUse'
+import Legal from './components/Legal'
+import Warranty from './components/Warranty'
+import Care from './components/Care'
+import Recycling from './components/Recycling'
+import Shipping from './components/Shipping'
+import Story from './components/Story'
+import Careers from './components/Careers'
+import Investors from './components/Investors'
+import Ethics from './components/Ethics'
 import './App.css'
 
 function App() {
@@ -58,6 +69,17 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/products" element={<AllProducts />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfUse />} />
+            <Route path="/legal" element={<Legal />} />
+            <Route path="/warranty" element={<Warranty />} />
+            <Route path="/care" element={<Care />} />
+            <Route path="/recycling" element={<Recycling />} />
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/story" element={<Story />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/investors" element={<Investors />} />
+            <Route path="/ethics" element={<Ethics />} />
           </Routes>
           <Footer />
           <AIAssistant />

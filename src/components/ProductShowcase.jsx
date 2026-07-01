@@ -2,12 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Plus } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 import toteImg from '../assets/tote_bag.png';
 import slingImg from '../assets/sling_bag.png';
 import backpackImg from '../assets/backpack_bag.png';
 
 export default function ProductShowcase() {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   const handleAddToCart = (e, product) => {
     e.stopPropagation();
@@ -71,7 +73,10 @@ export default function ProductShowcase() {
             <div style={{ flex: '1 1 400px', padding: '5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
               <h3 style={{ fontSize: '3rem', fontFamily: 'Playfair Display, serif', marginBottom: '1.5rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>Kiokilho<br/>Classic Tote</h3>
               <p style={{ fontSize: '1.15rem', color: 'var(--text-secondary)', marginBottom: '2.5rem', lineHeight: 1.6 }}>Elegan untuk keseharianmu. Paduan harmonis antara serat goni natural dengan detail jahitan jumputan yang memancarkan aura kemewahan tak lekang oleh waktu.</p>
-              <div style={{ fontSize: '1.4rem', fontWeight: 600, marginBottom: '3rem', color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 499.000</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '3rem' }}>
+                <span style={{ fontSize: '1.2rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>Rp 799.000</span>
+                <div style={{ fontSize: '1.4rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 499.000</div>
+              </div>
               
               <div>
                 <motion.button 
@@ -95,7 +100,7 @@ export default function ProductShowcase() {
                     transition: 'all 0.3s ease'
                   }}
                 >
-                  <Plus size={18} /> Tambah ke Keranjang
+                  <ArrowRight size={18} /> Tambah ke Keranjang
                 </motion.button>
               </div>
             </div>
@@ -147,13 +152,16 @@ export default function ProductShowcase() {
                 <h3 style={{ fontSize: '2.2rem', fontFamily: 'Playfair Display, serif', marginBottom: '1rem', color: 'var(--text-primary)' }}>Urban Sling</h3>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: 1.6, fontSize: '1.05rem' }}>Praktis, dinamis, dan menawan. Cocok untuk mobilitas tinggi di perkotaan.</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 349.000</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                    <span style={{ fontSize: '0.95rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>Rp 599.000</span>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 349.000</div>
+                  </div>
                   <motion.div 
                     onClick={(e) => handleAddToCart(e, { id: 2, name: "Urban Sling", price: "Rp 349.000", image: slingImg })}
                     variants={{ hover: { x: 8, color: 'var(--accent-color)' } }}
                     style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'color 0.3s ease', cursor: 'pointer' }}
                   >
-                    Beli <Plus size={18} />
+                    Beli <ArrowRight size={18} />
                   </motion.div>
                 </div>
               </div>
@@ -190,19 +198,59 @@ export default function ProductShowcase() {
                 <h3 style={{ fontSize: '2.2rem', fontFamily: 'Playfair Display, serif', marginBottom: '1rem', color: 'var(--text-primary)' }}>Explorer Pack</h3>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: 1.6, fontSize: '1.05rem' }}>Kapasitas besar dengan ketangguhan maksimal. Pendamping setia setiap petualangan.</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 899.000</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                    <span style={{ fontSize: '0.95rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>Rp 1.299.000</span>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>Rp 899.000</div>
+                  </div>
                   <motion.div 
                     onClick={(e) => handleAddToCart(e, { id: 3, name: "Explorer Pack", price: "Rp 899.000", image: backpackImg })}
                     variants={{ hover: { x: 8, color: 'var(--accent-color)' } }}
                     style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.95rem', textTransform: 'uppercase', letterSpacing: '0.1em', transition: 'color 0.3s ease', cursor: 'pointer' }}
                   >
-                    Beli <Plus size={18} />
+                    Beli <ArrowRight size={18} />
                   </motion.div>
                 </div>
               </div>
             </motion.div>
 
           </div>
+
+          {/* Button to see other products */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}
+          >
+            <button 
+              onClick={() => navigate('/products')}
+              style={{
+                background: 'transparent',
+                color: 'var(--text-primary)',
+                padding: '14px 36px',
+                border: '1px solid var(--text-primary)',
+                borderRadius: '999px',
+                fontSize: '1rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.8rem',
+                transition: 'all 0.3s ease',
+                fontFamily: 'Outfit, sans-serif'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.background = 'var(--text-primary)';
+                e.currentTarget.style.color = '#fff';
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = 'var(--text-primary)';
+              }}
+            >
+              Lihat Produk Kami Lainnya <ArrowRight size={18} />
+            </button>
+          </motion.div>
 
         </div>
       </div>

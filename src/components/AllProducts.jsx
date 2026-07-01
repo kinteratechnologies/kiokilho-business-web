@@ -9,7 +9,7 @@ import backpackImg from '../assets/backpack_bag.png';
 
 const allProducts = [
   {
-    id: 1, name: "Kiokilho Classic Tote", price: "Rp 499.000", category: "Tote Bag", image: toteImg,
+    id: 1, name: "Kiokilho Classic Tote", price: "Rp 499.000", originalPrice: "Rp 799.000", category: "Tote Bag", image: toteImg,
     images: [toteImg, slingImg, backpackImg],
     tag: "Best Seller",
     description: "Mahakarya tote bag ikonik dengan ruang penyimpanan luas. Dirajut dari serat goni pilihan dan sentuhan kain jumputan yang memancarkan pesona klasik nan elegan.",
@@ -17,7 +17,7 @@ const allProducts = [
     dimensions: "42cm (P) x 32cm (T) x 15cm (L)"
   },
   {
-    id: 2, name: "Urban Sling", price: "Rp 349.000", category: "Sling Bag", image: slingImg,
+    id: 2, name: "Urban Sling", price: "Rp 349.000", originalPrice: "Rp 599.000", category: "Sling Bag", image: slingImg,
     images: [slingImg, backpackImg, toteImg],
     tag: "New Arrival",
     description: "Ringkas, dinamis, dan modis. Tas selempang yang dirancang untuk menemani gaya hidup urban Anda tanpa mengorbankan nilai estetika nusantara.",
@@ -25,7 +25,7 @@ const allProducts = [
     dimensions: "22cm (P) x 28cm (T) x 8cm (L)"
   },
   {
-    id: 3, name: "Explorer Pack", price: "Rp 899.000", category: "Backpack", image: backpackImg,
+    id: 3, name: "Explorer Pack", price: "Rp 899.000", originalPrice: "Rp 1.299.000", category: "Backpack", image: backpackImg,
     images: [backpackImg, toteImg, slingImg],
     description: "Ransel premium yang tangguh namun tetap elegan. Menggabungkan material goni berdaya tahan tinggi dengan ornamen kulit & kuningan asli untuk petualangan yang penuh gaya.",
     longDescription: "Sang pendamping setia untuk jiwa-jiwa petualang. Explorer Pack mendefinisikan ulang arti ransel alam dengan sentuhan luxury. Panel belakangnya dilengkapi bantalan ergonomis berongga untuk sirkulasi udara maksimal. Gesper kuningan solid yang dibuat khusus memastikan ransel tertutup rapat. Ruang utamanya yang luas siap menampung laptop 15 inci beserta esensial perjalanan Anda selama akhir pekan.",
@@ -170,13 +170,22 @@ export default function AllProducts() {
                       <h3 style={{ fontSize: '1.8rem', fontFamily: 'Playfair Display, serif', marginBottom: '1.5rem', color: 'var(--text-primary)' }}>{product.name}</h3>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>{product.price}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                        {product.originalPrice && (
+                          <span style={{ fontSize: '0.95rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>
+                            {product.originalPrice}
+                          </span>
+                        )}
+                        <div style={{ fontSize: '1.2rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>
+                          {product.price}
+                        </div>
+                      </div>
                       <motion.div
                         onClick={(e) => { e.stopPropagation(); handleAddToCart(product); }}
                         variants={{ hover: { x: 5, color: 'var(--accent-color)' } }}
                         style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}
                       >
-                        Beli <Plus size={18} />
+                        Beli <ArrowRight size={18} />
                       </motion.div>
                     </div>
                   </div>
@@ -302,8 +311,15 @@ export default function AllProducts() {
                 <h2 style={{ fontSize: '2.5rem', fontFamily: 'Playfair Display, serif', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>
                   {selectedProduct.name}
                 </h2>
-                <div style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif', marginBottom: '1.5rem' }}>
-                  {selectedProduct.price}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                  {selectedProduct.originalPrice && (
+                    <span style={{ fontSize: '1.3rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>
+                      {selectedProduct.originalPrice}
+                    </span>
+                  )}
+                  <div style={{ fontSize: '1.8rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>
+                    {selectedProduct.price}
+                  </div>
                 </div>
 
                 {/* Dimensions Box */}

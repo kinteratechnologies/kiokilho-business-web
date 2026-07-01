@@ -52,7 +52,7 @@ export default function Testimonials() {
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <section style={{ padding: '8rem 0', background: 'var(--bg-color)', overflow: 'hidden' }}>
+    <section id="testimonial" style={{ padding: '8rem 0', background: 'var(--bg-color)', overflow: 'hidden' }}>
       <div className="container" style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

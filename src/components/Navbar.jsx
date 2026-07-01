@@ -67,8 +67,39 @@ export default function Navbar() {
         <div className="nav-links" style={{ display: 'flex', gap: '2rem', fontSize: '0.85rem', fontWeight: 500, color: textColor, transition: 'color 0.3s ease' }}>
           <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Beranda</Link>
           <Link to="/products" style={{ color: 'inherit', textDecoration: 'none' }}>Koleksi</Link>
-          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Jumputan Art</Link>
-          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>Bespoke</Link>
+          <Link 
+            to="/#bespoke" 
+            onClick={() => {
+              if (location.pathname === '/') {
+                document.getElementById('bespoke')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Bespoke
+          </Link>
+          <Link 
+            to="/#jumputan-art" 
+            onClick={() => {
+              if (location.pathname === '/') {
+                document.getElementById('jumputan-art')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Jumputan Art
+          </Link>
+          <Link 
+            to="/#testimonial" 
+            onClick={() => {
+              if (location.pathname === '/') {
+                document.getElementById('testimonial')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            style={{ color: 'inherit', textDecoration: 'none' }}
+          >
+            Testimoni
+          </Link>
         </div>
 
         {/* Actions */}

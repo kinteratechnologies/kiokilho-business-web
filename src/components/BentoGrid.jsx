@@ -45,7 +45,7 @@ const features = [
 
 export default function BentoGrid() {
   return (
-    <section id="mac" style={{ padding: '10rem 0', background: 'var(--bg-color)' }}>
+    <section id="bespoke" style={{ padding: '10rem 0', background: 'var(--bg-color)' }}>
       <div className="container">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

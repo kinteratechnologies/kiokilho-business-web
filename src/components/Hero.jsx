@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import slide1Lifestyle from '../assets/burlap_bag_lifestyle.png';
 import slide2 from '../assets/hero_slide_2.png';
 import slide3 from '../assets/hero_slide_3.png';
@@ -34,7 +35,7 @@ const slides = [
     kicker: "Simbol Status",
     title1: "Menyatu dengan",
     title2: "gaya hidup.",
-    lead: "Bukan sekadar tas, melainkan cerminan apresiasi Anda terhadap karya seni bernilai tinggi di setiap langkah."
+    lead: "Bukan sekadar tas, melainkan cerminan apresiasi Anda terhadap karya seni bernilai tinggi di setiap langkah. Hadir untuk menyempurnakan gaya eksklusif Anda."
   },
   {
     image: slide5Lifestyle,
@@ -150,14 +151,48 @@ export default function Hero() {
           <button 
             onClick={() => navigate('/products')}
             style={{ 
-            background: '#ffffff', 
-            color: '#1d1d1f', 
-            padding: '14px 32px',
-            fontSize: '1rem',
-            fontWeight: 600,
-            boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-          }}>
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+              background: 'rgba(0, 0, 0, 0.25)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              color: '#ffffff',
+              padding: '6px 6px 6px 24px',
+              borderRadius: '50px',
+              border: '1px solid rgba(255, 255, 255, 0.25)',
+              fontSize: '1.05rem',
+              fontWeight: 500,
+              fontFamily: 'Outfit, sans-serif',
+              cursor: 'pointer',
+              boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'scale(1.02)';
+              e.currentTarget.style.background = 'rgba(0, 0, 0, 0.35)';
+              e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.4)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+              e.currentTarget.style.background = 'rgba(0, 0, 0, 0.25)';
+              e.currentTarget.style.border = '1px solid rgba(255, 255, 255, 0.25)';
+            }}
+          >
             Eksplorasi Koleksi
+            <div style={{
+              background: '#fdfbf7',
+              color: '#1d1d1f',
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'transform 0.3s ease'
+            }}>
+              <ArrowUpRight size={20} strokeWidth={2} />
+            </div>
           </button>
         </motion.div>
 

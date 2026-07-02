@@ -8,6 +8,7 @@ import slingImg from '../assets/sling_bag.png';
 import backpackImg from '../assets/backpack_bag.png';
 
 import { supabase } from '../lib/supabase';
+import Lenis from 'lenis';
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
@@ -17,9 +18,16 @@ export default function AllProducts() {
   
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
   const { addToCart } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth > 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Parse search query
   const searchParams = new URLSearchParams(location.search);
@@ -76,6 +84,46 @@ export default function AllProducts() {
     loadData();
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    let lenisModal;
+    let rafId;
+
+    if (selectedProduct) {
+      document.body.style.overflow = 'hidden';
+      
+      // Initialize smooth scrolling for the modal ONLY on desktop
+      if (window.innerWidth > 768) {
+        setTimeout(() => {
+          const modalContainer = document.querySelector('.product-modal-content-section');
+          if (modalContainer && modalContainer.firstElementChild) {
+            lenisModal = new Lenis({
+              wrapper: modalContainer,
+              content: modalContainer.firstElementChild,
+              duration: 1.2,
+              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+              smoothWheel: true,
+            });
+
+            const raf = (time) => {
+              lenisModal.raf(time);
+              rafId = requestAnimationFrame(raf);
+            };
+            rafId = requestAnimationFrame(raf);
+          }
+        }, 100);
+      }
+
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      if (rafId) cancelAnimationFrame(rafId);
+      if (lenisModal) lenisModal.destroy();
+    };
+  }, [selectedProduct]);
 
   const handleAddToCart = (product) => {
     addToCart(product);
@@ -258,10 +306,20 @@ export default function AllProducts() {
                 position: 'relative'
               }}
               className="product-modal"
+              data-lenis-prevent="true"
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
             >
+              {/* Close Button fixed to top-right of entire modal */}
+              <button
+                className="close-modal-btn"
+                onClick={() => setSelectedProduct(null)}
+                style={{ zIndex: 9999 }}
+              >
+                <span style={{ fontSize: '20px', fontWeight: '900', fontFamily: 'sans-serif', lineHeight: 1 }}>✕</span>
+              </button>
+
               {/* Modal Image Section */}
-              <div className="product-modal-img-section" style={{ flex: '1 1 50%', background: '#f5f5f7', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+              <div className="product-modal-img-section" style={{ flex: '1 1 50%', background: '#fff', display: 'flex', flexDirection: 'column', position: 'relative' }}>
                 <div style={{ position: 'relative', width: '100%' }}>
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -276,14 +334,6 @@ export default function AllProducts() {
                     />
                   </AnimatePresence>
                 </div>
-
-                {/* Close Button fixed inside image (Moved after image for guaranteed z-index) */}
-                <button
-                  className="close-modal-btn"
-                  onClick={() => setSelectedProduct(null)}
-                >
-                  <span style={{ fontSize: '20px', fontWeight: '900', fontFamily: 'sans-serif', lineHeight: 1 }}>✕</span>
-                </button>
 
                 {/* Thumbnails */}
                 <div style={{ 
@@ -309,62 +359,69 @@ export default function AllProducts() {
               </div>
 
               {/* Modal Content */}
-              <div className="product-modal-content-section" style={{ flex: '1 1 50%', padding: '4rem 3rem', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
-                <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', fontFamily: 'Outfit, sans-serif' }}>
-                  {selectedProduct.category}
-                </div>
-                <h2 style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)', fontFamily: 'Playfair Display, serif', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>
-                  {selectedProduct.name}
-                </h2>
-                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-                  {selectedProduct.originalPrice && (
-                    <span style={{ whiteSpace: 'nowrap', fontSize: '1.3rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>
-                      {selectedProduct.originalPrice}
-                    </span>
-                  )}
-                  <div style={{ whiteSpace: 'nowrap', fontSize: '1.8rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>
-                    {selectedProduct.price}
+              <div className="product-modal-content-section" data-lenis-prevent="true" style={{ flex: '1 1 50%', padding: '4rem 3rem', overflowY: isDesktop ? 'hidden' : 'auto' }}>
+                <div className="lenis-modal-inner" style={{ display: 'flex', flexDirection: 'column', minHeight: '100%' }}>
+                  <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', fontFamily: 'Outfit, sans-serif' }}>
+                    {selectedProduct.category}
                   </div>
-                </div>
+                  <h2 style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)', fontFamily: 'Playfair Display, serif', marginBottom: '1rem', color: 'var(--text-primary)', lineHeight: 1.1 }}>
+                    {selectedProduct.name}
+                  </h2>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+                    {selectedProduct.originalPrice && (
+                      <span style={{ whiteSpace: 'nowrap', fontSize: '1.3rem', textDecoration: 'line-through', color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif' }}>
+                        {selectedProduct.originalPrice}
+                      </span>
+                    )}
+                    <div style={{ whiteSpace: 'nowrap', fontSize: '1.8rem', fontWeight: 600, color: 'var(--accent-color)', fontFamily: 'Outfit, sans-serif' }}>
+                      {selectedProduct.price}
+                    </div>
+                  </div>
 
-                {/* Dimensions Box */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', marginBottom: '2rem', padding: '1rem 1.2rem', background: '#f9f9fb', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
-                  <span style={{ fontWeight: 600, fontFamily: 'Outfit, sans-serif', color: 'var(--text-primary)', fontSize: '0.9rem' }}>Dimensi:</span>
-                  <span style={{ color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif', fontSize: '1.05rem' }}>{selectedProduct.dimensions}</span>
-                </div>
+                  {/* Dimensions Box */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem', marginBottom: '2rem', padding: '1rem 1.2rem', background: '#f9f9fb', borderRadius: '12px', border: '1px solid var(--border-color)' }}>
+                    <span style={{ fontWeight: 600, fontFamily: 'Outfit, sans-serif', color: 'var(--text-primary)', fontSize: '0.9rem' }}>Dimensi:</span>
+                    <span style={{ color: 'var(--text-secondary)', fontFamily: 'Outfit, sans-serif', fontSize: '1.05rem' }}>{selectedProduct.dimensions}</span>
+                  </div>
 
-                <div style={{ width: '40px', height: '2px', background: 'var(--accent-color)', marginBottom: '2rem' }}></div>
+                  <div style={{ width: '40px', height: '2px', minHeight: '2px', flexShrink: 0, background: 'var(--accent-color)', marginBottom: '2rem' }}></div>
 
-                <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '3rem', whiteSpace: 'pre-wrap' }}>
-                  {selectedProduct.longDescription}
-                </p>
+                  <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '3rem', whiteSpace: 'pre-wrap' }}>
+                    {selectedProduct.longDescription}
+                  </p>
 
-                <div style={{ marginTop: 'auto', display: 'flex', gap: '1rem' }}>
-                  <button
-                    onClick={() => handleAddToCart(selectedProduct)}
-                    style={{
-                      flex: 1,
-                      background: '#000',
-                      color: '#fff',
-                      border: 'none',
-                      padding: '1.2rem',
-                      borderRadius: '12px',
-                      fontSize: '1.05rem',
-                      fontWeight: 600,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '0.8rem',
-                      cursor: 'pointer',
-                      boxShadow: '0 10px 20px rgba(0, 0, 0, 0.15)',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                    onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                  >
-                    <Plus size={20} />
-                    Tambah ke Keranjang
-                  </button>
+                  <div style={{ marginTop: 'auto', display: 'flex', gap: '1rem' }}>
+                    <button
+                      onClick={() => handleAddToCart(selectedProduct)}
+                      style={{
+                        flex: 1,
+                        background: '#000',
+                        color: '#fff',
+                        border: 'none',
+                        padding: '1.2rem',
+                        borderRadius: '12px',
+                        fontSize: '1.05rem',
+                        fontWeight: 600,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '0.8rem',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
+                      <ShoppingCart size={20} />
+                      Masukkan Keranjang
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>

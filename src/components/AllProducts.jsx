@@ -40,7 +40,7 @@ const allProducts = [
   },
   {
     id: 5, name: "City Crossbody", price: "Rp 429.000", category: "Sling Bag", image: slingImg,
-    images: [slingImg, toteImg, slingImg],
+    images: [slingImg, toteImg, slingImg, backpackImg, toteImg, backpackImg],
     description: "Desain ergonomis dengan siluet minimalis. Memberikan kebebasan bergerak sekaligus menyempurnakan penampilan kasual premium Anda.",
     longDescription: "Harmoni antara desain minimalis kontemporer dengan kearifan lokal. City Crossbody menawarkan akses cepat ke barang-barang Anda melalui ritsleting mulus dari ujung ke ujung. Tali bahu kulit yang dapat disesuaikan memberikan kenyamanan tingkat tinggi. Kain jumputan yang melapisi bagian dalam tas memberikan kejutan visual yang menyenangkan setiap kali Anda membukanya.",
     dimensions: "28cm (P) x 22cm (T) x 9cm (L)"
@@ -247,33 +247,6 @@ export default function AllProducts() {
             }}
             onClick={() => setSelectedProduct(null)}
           >
-            {/* Close Button fixed to top-right of screen */}
-            <button
-              onClick={() => setSelectedProduct(null)}
-              style={{
-                position: 'absolute',
-                top: '1rem',
-                right: '1rem',
-                background: '#ffffff',
-                border: '1px solid var(--border-color)',
-                width: '48px',
-                height: '48px',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                zIndex: 100000,
-                color: 'var(--text-primary)',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-              }}
-              onMouseOver={(e) => { e.currentTarget.style.background = 'var(--text-primary)'; e.currentTarget.style.color = '#fff'; }}
-              onMouseOut={(e) => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.color = 'var(--text-primary)'; }}
-            >
-              <X size={36} strokeWidth={2.5} />
-            </button>
-
             <motion.div
               initial={{ opacity: 0, y: 50, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -295,7 +268,7 @@ export default function AllProducts() {
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
             >
               {/* Modal Image Section */}
-              <div className="product-modal-img-section" style={{ flex: '1 1 50%', background: '#f5f5f7', display: 'flex', flexDirection: 'column' }}>
+              <div className="product-modal-img-section" style={{ flex: '1 1 50%', background: '#f5f5f7', display: 'flex', flexDirection: 'column', position: 'relative' }}>
                 <div style={{ flex: 1, position: 'relative' }}>
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -311,13 +284,26 @@ export default function AllProducts() {
                   </AnimatePresence>
                 </div>
 
+                {/* Close Button fixed inside image (Moved after image for guaranteed z-index) */}
+                <button
+                  className="close-modal-btn"
+                  onClick={() => setSelectedProduct(null)}
+                >
+                  <span style={{ fontSize: '20px', fontWeight: '900', fontFamily: 'sans-serif', lineHeight: 1 }}>✕</span>
+                </button>
+
                 {/* Thumbnails */}
-                <div style={{ display: 'flex', gap: '1rem', padding: '1.5rem', background: '#fff', borderTop: '1px solid var(--border-color)' }}>
+                <div style={{ 
+                  display: 'flex', gap: '1rem', padding: '1rem 1.5rem', background: '#fff', 
+                  borderTop: '1px solid var(--border-color)', overflowX: 'auto', flexWrap: 'nowrap',
+                  scrollbarWidth: 'none', msOverflowStyle: 'none'
+                }}>
                   {selectedProduct.images.map((img, idx) => (
                     <button
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
                       style={{
+                        flexShrink: 0,
                         width: '80px', height: '80px', padding: 0, border: activeImageIndex === idx ? '2px solid var(--text-primary)' : '1px solid var(--border-color)',
                         borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', transition: 'all 0.3s ease',
                         opacity: activeImageIndex === idx ? 1 : 0.5

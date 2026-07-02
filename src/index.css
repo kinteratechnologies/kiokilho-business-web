@@ -203,7 +203,7 @@ button:hover {
   
   .product-modal-img-section {
     flex: none !important;
-    height: 350px !important;
+    height: 520px !important;
   }
   
   .product-modal-content-section {
@@ -211,4 +211,30 @@ button:hover {
     padding: 1.5rem !important;
     overflow-y: visible !important;
   }
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  color: #1d1d1f;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.close-modal-btn:hover {
+  background: #1d1d1f;
+  color: #ffffff;
 }

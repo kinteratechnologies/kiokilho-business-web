@@ -110,7 +110,9 @@ export default function Testimonials() {
             display: 'flex', 
             gap: '2rem',
             width: 'fit-content',
-            paddingLeft: '2rem'
+            paddingLeft: '2rem',
+            willChange: 'transform',
+            transform: 'translateZ(0)'
           }}
         >
           {duplicatedTestimonials.map((testimonial, idx) => (

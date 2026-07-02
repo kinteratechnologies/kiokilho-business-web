@@ -30,28 +30,48 @@
 | **AI Engine** | Google Generative AI (Gemini 3.1 Flash Lite) |
 | **Iconography** | Lucide React |
 
-## ✦ Local Development
+## ✦ Luxury Brand Aesthetic
+The UI/UX of this project is meticulously crafted to emulate **high-end luxury brands** (e.g., Louis Vuitton, Gucci, Hermès). It utilizes a bespoke design system featuring elegant serif typography (`Playfair Display`), deep charcoals, champagne gold accents, subtle glassmorphism, and hardware-accelerated smooth scrolling. This ensures a premium, "million-dollar" feel while remaining entirely lightweight and free to host.
 
-To experience the Kiokilho digital boutique locally:
+## ✦ Open Source & Cloning Guide
+This is a **public, open-source repository**. Developers, designers, and students are highly encouraged to clone, modify, and use this codebase as a template or reference for their own projects. 
 
+Whether you want to build a luxury e-commerce site, learn about Generative UI with Gemini AI, or study Framer Motion animations—you are free to fork and experiment!
+
+> **⚠️ Attribution Requirement:** If you clone, fork, or heavily modify this repository for public or commercial use, you **must** provide appropriate credit by linking back to this original repository (`https://github.com/CodevitsTeams/kiokilho-business-web`).
+
+### Quick Start:
 ```bash
-# Clone the repository
+# 1. Clone the public repository
 git clone https://github.com/CodevitsTeams/kiokilho-business-web.git
 
-# Navigate to the project directory
+# 2. Navigate to the project directory
 cd kiokilho-business-web
 
-# Install dependencies
+# 3. Install dependencies
 npm install
 
-# Start the development server
+# 4. Set up environment variables
+cp .env.example .env
+# (Don't forget to fill in your Supabase & Gemini API keys in the .env file)
+
+# 5. Start the development server
 npm run dev
 ```
 
+## ✦ Custom Development / Hire Us
+Are you looking to build a high-end, luxury website like this for your own products, brand, or business? 
+
+We offer professional, end-to-end custom web development services tailored to your specific aesthetic and technical needs. 
+- **Contact Us:** [business@codevits.com](mailto:business@codevits.com)
+- **Turnaround Time:** Minimum of 2 days (duration varies depending on feature complexity, custom requests, and database integrations).
+
+Let's collaborate to elevate your digital presence to the next level.
+
 ## ✦ Legal & Brand Identity
-Kiokilho operates exclusively under its authentic local identity, headquartered in Prambanan, Sleman, Yogyakarta. All digital assets, AI interaction boundaries, and brand guidelines are strictly enforced to maintain a luxury, professional narrative.
+The **Kiokilho** brand name, logos, and physical product details belong exclusively to the original business based in Prambanan, Sleman, Yogyakarta. However, the **source code, UI components, and architectural logic** of this repository are open for public learning and modification.
 
 <hr />
 <div align="center">
-  <small>© 2026 Kiokilho. All rights reserved.</small>
+  <small>Developed by PT Codevits Innovation Indonesia | © 2026</small>
 </div>

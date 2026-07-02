@@ -6,7 +6,8 @@ import slide1Lifestyle from '../assets/burlap_bag_lifestyle.png';
 import slide2 from '../assets/hero_slide_2.png';
 import slide3 from '../assets/hero_slide_3.png';
 import slide4Lifestyle from '../assets/bag_lifestyle_4.png';
-import slide5Lifestyle from '../assets/bag_eco_lifestyle_5_alt.png';
+import slide5Lifestyle from '../assets/slide5.jpeg';
+import slide5Mobile from '../assets/slide5mobile.jpeg';
 
 const slides = [
   {
@@ -39,22 +40,31 @@ const slides = [
   },
   {
     image: slide5Lifestyle,
-    kicker: "Langkah Berkelanjutan",
-    title1: "Kemewahan yang",
-    title2: "peduli bumi.",
-    lead: "Tampil memukau sekaligus menjaga kelestarian alam. Koleksi ramah lingkungan kami adalah wujud cinta pada generasi mendatang."
+    mobileImage: slide5Mobile,
+    kicker: "Kebanggaan Bangsa",
+    title1: "Pesona anggun",
+    title2: "warisan bangsa.",
+    lead: "Merajut karsa dan rasa dalam satu harmoni. Menjadikannya warisan kebanggaan bangsa yang melekat indah di setiap langkah keanggunan Anda."
   }
 ];
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const navigate = useNavigate();
 
   useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
-    return () => clearInterval(timer);
+    
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
@@ -82,7 +92,7 @@ export default function Hero() {
         <AnimatePresence>
           <motion.img
             key={currentSlide}
-            src={slides[currentSlide].image}
+            src={isMobile && slides[currentSlide].mobileImage ? slides[currentSlide].mobileImage : slides[currentSlide].image}
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}

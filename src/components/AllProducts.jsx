@@ -262,7 +262,7 @@ export default function AllProducts() {
             >
               {/* Modal Image Section */}
               <div className="product-modal-img-section" style={{ flex: '1 1 50%', background: '#f5f5f7', display: 'flex', flexDirection: 'column', position: 'relative' }}>
-                <div style={{ flex: 1, position: 'relative' }}>
+                <div style={{ position: 'relative', width: '100%' }}>
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={activeImageIndex}
@@ -272,7 +272,7 @@ export default function AllProducts() {
                       transition={{ duration: 0.3 }}
                       src={selectedProduct.images[activeImageIndex]}
                       alt={selectedProduct.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+                      style={{ width: '100%', height: 'auto', display: 'block' }}
                     />
                   </AnimatePresence>
                 </div>
@@ -335,7 +335,7 @@ export default function AllProducts() {
 
                 <div style={{ width: '40px', height: '2px', background: 'var(--accent-color)', marginBottom: '2rem' }}></div>
 
-                <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '3rem' }}>
+                <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '3rem', whiteSpace: 'pre-wrap' }}>
                   {selectedProduct.longDescription}
                 </p>
 

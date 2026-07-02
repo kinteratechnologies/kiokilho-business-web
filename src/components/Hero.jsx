@@ -106,7 +106,7 @@ export default function Hero() {
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 60%, #ffffff 100%)',
+          background: isMobile ? 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.5) 60%, #ffffff 100%)' : 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 60%, #ffffff 100%)',
           zIndex: 1,
           pointerEvents: 'none'
         }}></div>
@@ -123,6 +123,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              style={{ filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.7))' }}
             >
               <span style={{
                 fontSize: '0.9rem',

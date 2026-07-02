@@ -216,7 +216,7 @@ button:hover {
   
   .product-modal-img-section {
     flex: none !important;
-    height: 520px !important;
+    height: auto !important;
   }
   
   .product-modal-content-section {

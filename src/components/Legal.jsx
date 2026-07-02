@@ -19,7 +19,7 @@ export default function Legal() {
             <p>
               <strong>Kiokilho</strong><br/>
               Terdaftar secara resmi di Republik Indonesia.<br/>
-              Nomor Induk Berusaha (NIB): 890123456789<br/>
+              Nomor Induk Berusaha (NIB): 2104220054682<br/>
               Kantor Pusat: <strong><a href="https://maps.app.goo.gl/yMGxMAQ5aLsbdxNe9?g_st=ac" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>Jl. Nglengkong-Ledoksari, Sumberwatu, RT04/02 Dowangsari, Sambirejo, Kec. Prambanan, Kabupaten Sleman, Provinsi Daerah Istimewa Yogyakarta 55572</a></strong>
             </p>
             <h3 style={{ fontSize: '1.5rem', marginTop: '1rem', color: 'var(--text-primary)', fontWeight: 600 }}>Merek Dagang</h3>

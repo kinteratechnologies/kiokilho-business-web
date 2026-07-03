@@ -10,12 +10,54 @@ import backpackImg from '../assets/backpack_bag.png';
 import { supabase } from '../lib/supabase';
 import Lenis from 'lenis';
 
+function ImageWithSkeleton({ src, alt, variants, transition, style, ...props }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Merge external animate props with our loading opacity state
+  const mergedAnimate = typeof props.animate === 'object'
+    ? { ...props.animate, opacity: isLoaded ? (props.animate.opacity !== undefined ? props.animate.opacity : 1) : 0 }
+    : (props.animate ? props.animate : { opacity: isLoaded ? 1 : 0 });
+
+  return (
+    <>
+      {!isLoaded && (
+        <motion.div
+          animate={{ opacity: [0.3, 0.7, 0.3] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+          style={{
+            position: 'absolute',
+            top: 0, left: 0, right: 0, bottom: 0,
+            background: '#e0e0e0',
+            zIndex: 1,
+            ...style,
+            width: '100%', height: '100%'
+          }}
+        />
+      )}
+      <motion.img
+        {...props}
+        animate={mergedAnimate}
+        variants={variants}
+        transition={transition || { duration: 0.4 }}
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        style={{
+          ...style,
+          zIndex: 2,
+          position: 'relative'
+        }}
+      />
+    </>
+  );
+}
+
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
@@ -63,7 +105,7 @@ export default function AllProducts() {
         // Load products
         const { data: prodData, error: prodError } = await supabase.from('products').select('*').order('id');
         if (prodError) throw prodError;
-        
+
         // Map database fields to the UI expected format
         const formattedData = prodData.map(p => ({
           ...p,
@@ -72,7 +114,7 @@ export default function AllProducts() {
           originalPrice: p.original_price, // map snake_case to camelCase
           longDescription: p.long_description // map snake_case to camelCase
         }));
-        
+
         setProducts(formattedData);
       } catch (err) {
         console.error("Error loading data:", err);
@@ -91,7 +133,7 @@ export default function AllProducts() {
 
     if (selectedProduct) {
       document.body.style.overflow = 'hidden';
-      
+
       // Initialize smooth scrolling for the modal ONLY on desktop
       if (window.innerWidth > 768) {
         setTimeout(() => {
@@ -222,7 +264,7 @@ export default function AllProducts() {
                         {product.tag}
                       </div>
                     )}
-                    <motion.img
+                    <ImageWithSkeleton
                       variants={{ hover: { scale: 1.08 } }}
                       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                       src={product.image}
@@ -322,7 +364,7 @@ export default function AllProducts() {
               <div className="product-modal-img-section" style={{ flex: '1 1 50%', background: '#fff', display: 'flex', flexDirection: 'column', position: 'relative' }}>
                 <div style={{ position: 'relative', width: '100%' }}>
                   <AnimatePresence mode="wait">
-                    <motion.img
+                    <ImageWithSkeleton
                       key={activeImageIndex}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -336,8 +378,8 @@ export default function AllProducts() {
                 </div>
 
                 {/* Thumbnails */}
-                <div style={{ 
-                  display: 'flex', gap: '1rem', padding: '1rem 1.5rem', background: '#fff', 
+                <div style={{
+                  display: 'flex', gap: '1rem', padding: '1rem 1.5rem', background: '#fff',
                   borderTop: '1px solid var(--border-color)', overflowX: 'auto', flexWrap: 'nowrap',
                   scrollbarWidth: 'none', msOverflowStyle: 'none'
                 }}>
@@ -349,10 +391,11 @@ export default function AllProducts() {
                         flexShrink: 0,
                         width: '80px', height: '80px', padding: 0, border: activeImageIndex === idx ? '2px solid var(--text-primary)' : '1px solid var(--border-color)',
                         borderRadius: '12px', overflow: 'hidden', cursor: 'pointer', transition: 'all 0.3s ease',
-                        opacity: activeImageIndex === idx ? 1 : 0.5
+                        opacity: activeImageIndex === idx ? 1 : 0.5,
+                        position: 'relative'
                       }}
                     >
-                      <img src={img} alt="thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <ImageWithSkeleton src={img} alt="thumbnail" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </button>
                   ))}
                 </div>

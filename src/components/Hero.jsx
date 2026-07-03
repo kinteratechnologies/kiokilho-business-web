@@ -13,51 +13,91 @@ import ptr3 from '../assets/ptr3.jpeg';
 import ptr4 from '../assets/ptr4.jpeg';
 import ptr5 from '../assets/ptr5.jpeg';
 
-const slides = [
+const slide5Variants = [
   {
-    image: lsp1,
-    mobileImage: ptr1,
-    kicker: "Eksklusif & Autentik",
-    title1: "Setiap jahitan",
-    title2: "membawa cerita.",
-    lead: "Dirajut secara manual dengan penuh dedikasi, memadukan ketangguhan serat goni dengan keindahan motif jumputan Nusantara."
-  },
-  {
-    image: lsp2,
-    mobileImage: ptr2,
-    kicker: "Elegan & Mewah",
-    title1: "Simfoni serat",
-    title2: "natural.",
-    lead: "Mewujudkan keanggunan sejati yang lahir dari material alam, disempurnakan oleh keterampilan tangan perajin lokal yang teliti di setiap detailnya."
-  },
-  {
-    image: lsp3,
-    mobileImage: ptr3,
-    kicker: "Ikonik & Klasik",
-    title1: "Definisi baru",
-    title2: "kemewahan.",
-    lead: "Sebuah mahakarya eksklusif yang mendefinisikan ulang standar kemewahan, dirancang khusus untuk menjadi teman setia Anda yang tak lekang oleh waktu."
-  },
-  {
-    image: lsp4,
-    mobileImage: ptr4,
-    kicker: "Simbol Status",
-    title1: "Menyatu dengan",
-    title2: "gaya hidup.",
-    lead: "Bukan sekadar tas, melainkan cerminan apresiasi Anda terhadap karya seni bernilai tinggi di setiap langkah. Hadir untuk menyempurnakan gaya eksklusif Anda."
-  },
-  {
-    image: lsp5,
-    mobileImage: ptr5,
     kicker: "Kebanggaan Bangsa",
-    title1: "Pesona anggun",
+    title1: "Mahakarya",
     title2: "warisan bangsa.",
     lead: "Merajut karsa dan rasa dalam satu harmoni. Menjadikannya warisan kebanggaan bangsa yang melekat indah di setiap langkah keanggunan Anda."
+  },
+  {
+    kicker: "Ruh Tradisi",
+    title1: "Napas budaya,",
+    title2: "jiwa Nusantara.",
+    lead: "Lebih dari sekadar rupa, ia adalah denyut nadi tradisi yang terus berdetak. Membawa ruh kearifan lokal berpadu memukau di atas panggung gaya modern."
+  },
+  {
+    kicker: "Pesona Magis",
+    title1: "Guratan pesona",
+    title2: "bumi pertiwi.",
+    lead: "Kecantikan alam dan keelokan budaya Nusantara tersirat sempurna di setiap silang jalinannya. Menghadirkan pesona magis yang senantiasa memikat."
+  },
+  {
+    kicker: "Jejak Abadi",
+    title1: "Merajut jejak",
+    title2: "sang waktu.",
+    lead: "Saksi bisu dedikasi tangan perajin dalam mengabadikan nilai-nilai luhur. Sebuah narasi keanggunan abadi yang melampaui batas hari dan dekade."
+  },
+  {
+    kicker: "Estetika Klasik",
+    title1: "Karya agung",
+    title2: "lintas zaman.",
+    lead: "Dirancang bukan sekadar untuk tren sesaat, melainkan perayaan estetika tak lekang. Merawat warisan kebanggaan dari satu generasi ke generasi berikutnya."
+  },
+  {
+    kicker: "Keanggunan Murni",
+    title1: "Lestari dalam",
+    title2: "keanggunan.",
+    lead: "Menjaga api warisan budaya murni agar tak pernah padam. Membalutnya dengan aura kemewahan kelas atas yang meredefinisi gaya paripurna Anda."
   }
 ];
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [slide5VariantIndex, setSlide5VariantIndex] = useState(Math.floor(Math.random() * slide5Variants.length));
+  
+  const slides = [
+    {
+      image: lsp1,
+      mobileImage: ptr1,
+      kicker: "Eksklusif & Autentik",
+      title1: "Setiap jahitan",
+      title2: "membawa cerita.",
+      lead: "Dirajut secara manual dengan penuh dedikasi, memadukan ketangguhan serat goni dengan keindahan motif jumputan Nusantara."
+    },
+    {
+      image: lsp2,
+      mobileImage: ptr2,
+      kicker: "Elegan & Mewah",
+      title1: "Simfoni serat",
+      title2: "natural.",
+      lead: "Mewujudkan keanggunan sejati yang lahir dari material alam, disempurnakan oleh keterampilan tangan perajin lokal yang teliti di setiap detailnya."
+    },
+    {
+      image: lsp3,
+      mobileImage: ptr3,
+      kicker: "Ikonik & Klasik",
+      title1: "Definisi baru",
+      title2: "kemewahan.",
+      lead: "Sebuah mahakarya eksklusif yang mendefinisikan ulang standar kemewahan, dirancang khusus untuk menjadi teman setia Anda yang tak lekang oleh waktu."
+    },
+    {
+      image: lsp4,
+      mobileImage: ptr4,
+      kicker: "Simbol Status",
+      title1: "Menyatu dengan",
+      title2: "gaya hidup.",
+      lead: "Bukan sekadar tas, melainkan cerminan apresiasi Anda terhadap karya seni bernilai tinggi di setiap langkah. Hadir untuk menyempurnakan gaya eksklusif Anda."
+    },
+    {
+      image: lsp5,
+      mobileImage: ptr5,
+      kicker: slide5Variants[slide5VariantIndex].kicker,
+      title1: slide5Variants[slide5VariantIndex].title1,
+      title2: slide5Variants[slide5VariantIndex].title2,
+      lead: slide5Variants[slide5VariantIndex].lead
+    }
+  ];
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const navigate = useNavigate();
 
@@ -73,7 +113,14 @@ export default function Hero() {
       clearInterval(timer);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [slides.length]);
+
+  // Cycle Slide 5 variant every time the slider loops back to the start
+  useEffect(() => {
+    if (currentSlide === 0) {
+      setSlide5VariantIndex(prev => (prev + 1) % slide5Variants.length);
+    }
+  }, [currentSlide]);
 
   return (
     <section style={{

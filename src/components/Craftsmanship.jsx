@@ -1,24 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import artisanImg from '../assets/artisan_craftsmanship.png';
+import artisanImg from '../assets/arts.jpeg';
 
 export default function Craftsmanship() {
   return (
     <section id="jumputan-art" style={{ padding: '4rem 0', background: '#0a0a0a', color: '#ffffff', position: 'relative', overflow: 'hidden' }}>
       <div className="container">
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6rem' }}>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             style={{ flex: '1 1 300px' }}
           >
-            <span style={{ 
-              fontSize: '0.9rem', 
-              fontWeight: 600, 
-              textTransform: 'uppercase', 
+            <span style={{
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              textTransform: 'uppercase',
               letterSpacing: '0.2em',
               color: '#e5d3b3', // Gold-ish
               marginBottom: '1.5rem',
@@ -28,7 +28,7 @@ export default function Craftsmanship() {
               Behind The Seams
             </span>
             <h2 style={{ fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', fontFamily: 'Playfair Display, serif', marginBottom: '2rem', lineHeight: 1.15 }}>
-              Dedikasi dalam<br/>setiap anyaman.
+              Dedikasi dalam<br />setiap anyaman.
             </h2>
             <p style={{ fontSize: '1.15rem', color: '#a1a1a6', marginBottom: '2rem', lineHeight: 1.8 }}>
               Bukan sekadar produksi masal. Setiap mahakarya Kiokilho melewati lebih dari 72 jam proses pengerjaan tangan yang menuntut tingkat presisi dan kesabaran luar biasa.
@@ -55,8 +55,8 @@ export default function Craftsmanship() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             style={{ flex: '1 1 300px', position: 'relative' }}
           >
-            <div style={{ borderRadius: '2px', overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,0,0,0.6)' }}>
-              <img src={artisanImg} alt="Artisan Craftsmanship" style={{ width: '100%', height: 'auto', display: 'block', transform: 'scale(1.02)' }} />
+            <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,0,0,0.6)' }}>
+              <img src={artisanImg} alt="Artisan Craftsmanship" style={{ width: '100%', height: 'auto', aspectRatio: '1 / 1', objectFit: 'cover', display: 'block', transform: 'scale(1.02)' }} />
             </div>
             {/* Ambient glow behind image */}
             <div style={{

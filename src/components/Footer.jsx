@@ -112,7 +112,7 @@ export default function Footer() {
                 <span className="address-ipad-only"><strong>Kiokilho Handcraft &amp; Ecoprint</strong><br />Jl. Nglengkong-Ledoksari, Sumberwatu, RT04/02<br />Dowangsari, Sambirejo, Kec. Prambanan, Sleman,<br />Provinsi Daerah Istimewa Yogyakarta 55572</span>
                 <span className="address-desktop"><strong>Kiokilho Handcraft &amp; Ecoprint</strong><br />Jl. Raya Nglengkong-Ledoksari, Sumberwatu, RT04/02 Dowangsari, Desa/Kelurahan Sambirejo, Kec. Prambanan, Sleman, DIY 55572</span>
               </li>
-              <li className="hide-on-desktop" style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', display: 'flex', gap: '0.5rem' }}>
+              <li style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', display: 'flex', gap: '0.5rem' }}>
                 <span>📧</span> <a href="mailto:kiokilho@gmail.com" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>kiokilho@gmail.com</a>
               </li>
               <li style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', display: 'flex', gap: '0.5rem' }}>

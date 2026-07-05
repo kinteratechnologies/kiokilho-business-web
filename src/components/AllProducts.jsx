@@ -380,7 +380,7 @@ export default function AllProducts() {
                       transition={{ duration: 0.3 }}
                       src={selectedProduct.images[activeImageIndex]}
                       alt={selectedProduct.name}
-                      style={{ width: '100%', height: 'auto', display: 'block' }}
+                      style={{ width: '100%', height: 'auto', maxHeight: 'calc(90vh - 130px)', objectFit: 'cover', display: 'block' }}
                     />
                   </AnimatePresence>
                 </div>
@@ -388,7 +388,7 @@ export default function AllProducts() {
                 {/* Thumbnails */}
                 <div style={{
                   display: 'flex', gap: '1rem', padding: '1rem 1.5rem', background: '#fff',
-                  borderTop: '1px solid var(--border-color)', overflowX: 'auto', flexWrap: 'nowrap',
+                  overflowX: 'auto', flexWrap: 'nowrap',
                   scrollbarWidth: 'none', msOverflowStyle: 'none'
                 }}>
                   {selectedProduct.images.map((img, idx) => (

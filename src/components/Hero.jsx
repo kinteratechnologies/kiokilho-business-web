@@ -55,7 +55,7 @@ const slide5Variants = [
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slide5VariantIndex, setSlide5VariantIndex] = useState(Math.floor(Math.random() * slide5Variants.length));
-  
+
   const slides = [
     {
       image: lsp1,
@@ -72,7 +72,8 @@ export default function Hero() {
       kicker: "Elegan & Mewah",
       title1: "Simfoni harmoni",
       title2: "serat natural.",
-      lead: "Mewujudkan keanggunan sejati yang lahir dari material alam, disempurnakan oleh keterampilan tangan perajin lokal yang teliti di setiap detailnya untuk menyempurnakan pesona gaya Anda."
+      lead: "Mewujudkan keanggunan sejati yang lahir dari mahakarya serat alam, diciptakan khusus untuk memancarkan identitas dan persona Anda.",
+      leadDesktop: "Mewujudkan keanggunan sejati yang lahir dari material alam, disempurnakan oleh keterampilan tangan perajin lokal yang teliti di setiap detailnya untuk menyempurnakan pesona gaya Anda."
     },
     {
       image: lsp3,
@@ -80,7 +81,8 @@ export default function Hero() {
       kicker: "Ikonik & Klasik",
       title1: "Definisi baru",
       title2: "kemewahan.",
-      lead: "Sebuah mahakarya eksklusif yang mendefinisikan ulang standar kemewahan, dirancang khusus untuk menjadi teman setia Anda yang tak lekang oleh waktu, menemani setiap momen berharga."
+      lead: "Mahakarya eksklusif yang mendefinisikan ulang standar kemewahan, dirancang khusus untuk menemani setiap momen berharga Anda.",
+      leadDesktop: "Sebuah mahakarya eksklusif yang mendefinisikan ulang standar kemewahan, dirancang khusus untuk menjadi teman setia Anda yang tak lekang oleh waktu, menemani setiap momen berharga."
     },
     {
       image: lsp4,
@@ -88,7 +90,8 @@ export default function Hero() {
       kicker: "Simbol Status",
       title1: "Menyatu dengan",
       title2: "gaya hidup.",
-      lead: "Bukan sekadar tas, melainkan cerminan apresiasi terhadap karya seni bernilai tinggi. Hadir untuk menyempurnakan gaya eksklusif dengan sentuhan kemewahan sejati."
+      lead: "Lebih dari sekadar tas, ia adalah cerminan apresiasi pada karya seni bernilai tinggi. Merajut gaya eksklusifitas dengan kemewahan sejati.",
+      leadDesktop: "Bukan sekadar tas, melainkan cerminan apresiasi terhadap karya seni bernilai tinggi. Hadir untuk menyempurnakan gaya eksklusifitas dengan sentuhan kemewahan sejati."
     },
     {
       image: lsp5,
@@ -152,7 +155,7 @@ export default function Hero() {
         <AnimatePresence>
           <motion.img
             key={currentSlide}
-            src={isMobile && slides[currentSlide].mobileImage ? slides[currentSlide].mobileImage : slides[currentSlide].image}
+            src={isTablet && slides[currentSlide].mobileImage ? slides[currentSlide].mobileImage : slides[currentSlide].image}
             initial={{ opacity: 0, scale: 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}

@@ -6,7 +6,7 @@ export default function Craftsmanship() {
   return (
     <section id="jumputan-art" className="dark-section" style={{ padding: '4rem 0', background: '#0a0a0a', color: '#ffffff', position: 'relative', overflow: 'hidden' }}>
       <div className="container">
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6rem' }}>
+        <div className="craft-gap" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6rem' }}>
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -27,23 +27,23 @@ export default function Craftsmanship() {
             }}>
               Behind The Seams
             </span>
-            <h2 style={{ fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', fontFamily: 'Playfair Display, serif', marginBottom: '2rem', lineHeight: 1.15 }}>
+            <h2 className="craft-title" style={{ fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', fontFamily: 'Playfair Display, serif', marginBottom: '2rem', lineHeight: 1.15 }}>
               Dedikasi dalam<br />setiap anyaman.
             </h2>
-            <p style={{ fontSize: '1.15rem', color: '#a1a1a6', marginBottom: '2rem', lineHeight: 1.8 }}>
+            <p className="craft-desc craft-desc-1" style={{ fontSize: '1.15rem', color: '#a1a1a6', marginBottom: '2rem', lineHeight: 1.8 }}>
               Bukan sekadar produksi masal. Setiap mahakarya Kiokilho melewati lebih dari 72 jam proses pengerjaan tangan yang menuntut tingkat presisi dan kesabaran luar biasa.
             </p>
-            <p style={{ fontSize: '1.15rem', color: '#a1a1a6', marginBottom: '3.5rem', lineHeight: 1.8 }}>
+            <p className="craft-desc craft-desc-2" style={{ fontSize: '1.15rem', color: '#a1a1a6', marginBottom: '3.5rem', lineHeight: 1.8 }}>
               Pengrajin ahli kami memadukan teknik tenun goni tradisional dengan seni lukis jumputan yang diwariskan secara turun-temurun, menciptakan tekstur dan pola autentik yang mustahil diduplikasi oleh mesin manapun.
             </p>
-            <div style={{ display: 'flex', gap: '4rem', borderTop: '1px solid #222', paddingTop: '2.5rem' }}>
+            <div className="craft-stats-gap" style={{ display: 'flex', gap: '4rem', borderTop: '1px solid #222', paddingTop: '2.5rem' }}>
               <div>
-                <div style={{ fontSize: '2.5rem', fontFamily: 'Playfair Display, serif', color: '#e5d3b3', marginBottom: '0.5rem' }}>72+</div>
-                <div style={{ fontSize: '0.85rem', color: '#a1a1a6', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'Outfit, sans-serif' }}>Jam Pengerjaan</div>
+                <div className="craft-stat-val" style={{ fontSize: '2.5rem', fontFamily: 'Playfair Display, serif', color: '#e5d3b3', marginBottom: '0.5rem' }}>72+</div>
+                <div className="craft-stat-label" style={{ fontSize: '0.85rem', color: '#a1a1a6', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'Outfit, sans-serif' }}>Jam Pengerjaan</div>
               </div>
               <div>
-                <div style={{ fontSize: '2.5rem', fontFamily: 'Playfair Display, serif', color: '#e5d3b3', marginBottom: '0.5rem' }}>100%</div>
-                <div style={{ fontSize: '0.85rem', color: '#a1a1a6', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'Outfit, sans-serif' }}>Handmade</div>
+                <div className="craft-stat-val" style={{ fontSize: '2.5rem', fontFamily: 'Playfair Display, serif', color: '#e5d3b3', marginBottom: '0.5rem' }}>100%</div>
+                <div className="craft-stat-label" style={{ fontSize: '0.85rem', color: '#a1a1a6', textTransform: 'uppercase', letterSpacing: '0.15em', fontFamily: 'Outfit, sans-serif' }}>Handmade</div>
               </div>
             </div>
           </motion.div>

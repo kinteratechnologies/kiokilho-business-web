@@ -72,7 +72,7 @@ export default function Hero() {
       kicker: "Elegan & Mewah",
       title1: "Simfoni harmoni",
       title2: "serat natural.",
-      lead: "Mewujudkan keanggunan sejati yang lahir dari mahakarya serat alam, diciptakan khusus untuk memancarkan identitas dan persona Anda.",
+      lead: "Mewujudkan keanggunan sejati yang lahir dari material serat alam, diciptakan khusus untuk memancarkan identitas dan persona Anda.",
       leadDesktop: "Mewujudkan keanggunan sejati yang lahir dari material alam, disempurnakan oleh keterampilan tangan perajin lokal yang teliti di setiap detailnya untuk menyempurnakan pesona gaya Anda."
     },
     {
@@ -156,12 +156,15 @@ export default function Hero() {
           <motion.img
             key={currentSlide}
             src={isTablet && slides[currentSlide].mobileImage ? slides[currentSlide].mobileImage : slides[currentSlide].image}
-            initial={{ opacity: 0, scale: 1.05 }}
+            initial={{ opacity: 0, scale: 1.15 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            transition={{
+              opacity: { duration: 1.8, ease: "easeInOut" },
+              scale: { duration: 8, ease: "easeOut" }
+            }}
             alt="Tas Goni Premium Kiokilho"
-            style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
+            style={{ position: 'absolute', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', willChange: 'transform, opacity' }}
           />
         </AnimatePresence>
 
@@ -182,36 +185,63 @@ export default function Hero() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              style={{ filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.7))' }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.12, delayChildren: 0.1 }
+                },
+                exit: {
+                  opacity: 0,
+                  transition: { duration: 0.4, ease: "easeOut" }
+                }
+              }}
+              style={{ filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.7))', display: 'flex', flexDirection: 'column', alignItems: 'center', willChange: 'transform, opacity' }}
             >
-              <span style={{
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.15em',
-                color: '#e5d3b3',
-                marginBottom: '1.5rem',
-                display: 'block',
-                fontFamily: 'Outfit, sans-serif'
-              }}>{slides[currentSlide].kicker}</span>
+              <motion.span
+                variants={{
+                  hidden: { opacity: 0, y: 25, filter: 'blur(10px)' },
+                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { type: 'spring', damping: 25, stiffness: 120, mass: 1 } }
+                }}
+                style={{
+                  fontSize: '0.9rem',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.15em',
+                  color: '#e5d3b3',
+                  marginBottom: '1.5rem',
+                  display: 'block',
+                  fontFamily: 'Outfit, sans-serif',
+                  willChange: 'transform, opacity, filter'
+                }}
+              >
+                {slides[currentSlide].kicker}
+              </motion.span>
 
-              <h1
+              <motion.h1
+                variants={{
+                  hidden: { opacity: 0, y: 35, filter: 'blur(15px)' },
+                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { type: 'spring', damping: 28, stiffness: 110, mass: 1.2 } }
+                }}
                 className="display-1"
-                style={{ marginBottom: '1.5rem', color: '#ffffff' }}
+                style={{ marginBottom: '1.5rem', color: '#ffffff', willChange: 'transform, opacity, filter' }}
               >
                 {slides[currentSlide].title1} <br /><span style={{ background: 'linear-gradient(135deg, #ffffff 0%, #e5d3b3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{slides[currentSlide].title2}</span>
-              </h1>
+              </motion.h1>
 
-              <p
+              <motion.p
+                variants={{
+                  hidden: { opacity: 0, y: 25, filter: 'blur(10px)' },
+                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { type: 'spring', damping: 25, stiffness: 120, mass: 1 } }
+                }}
                 className="lead"
-                style={{ marginBottom: '0', color: '#f5f5f7' }}
+                style={{ marginBottom: '0', color: '#f5f5f7', willChange: 'transform, opacity, filter' }}
               >
                 {isTablet ? slides[currentSlide].lead : (slides[currentSlide].leadDesktop || slides[currentSlide].lead)}
-              </p>
+              </motion.p>
             </motion.div>
           </AnimatePresence>
         </div>

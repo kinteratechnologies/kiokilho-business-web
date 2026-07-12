@@ -58,12 +58,12 @@ This is a **public, open-source repository**. Developers, designers, and student
 
 Whether you want to build a luxury e-commerce site, learn about Generative UI with Gemini AI, or study Framer Motion animations, you are free to fork and experiment!
 
-> **⚠️ Attribution Requirement:** If you clone, fork, or heavily modify this repository for public or commercial use, you **must** provide appropriate credit by linking back to this original repository (`https://github.com/CodevitsTeams/kiokilho-business-web`).
+> **⚠️ Attribution Requirement:** If you clone, fork, or heavily modify this repository for public or commercial use, you **must** provide appropriate credit by linking back to this original repository (`https://github.com/kinteratechnologies/kiokilho-business-web`).
 
 ### Quick Start:
 ```bash
 # 1. Clone the public repository
-git clone https://github.com/CodevitsTeams/kiokilho-business-web.git
+git clone https://github.com/kinteratechnologies/kiokilho-business-web.git
 
 # 2. Navigate to the project directory
 cd kiokilho-business-web

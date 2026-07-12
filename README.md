@@ -1,6 +1,6 @@
 <div align="center">
   <img src="public/favicon.svg" alt="Kiokilho Logo" width="80" height="80" />
-  <h1 align="center">Kiokilho — Aura Artisans</h1>
+  <h1 align="center">Kiokilho Aura Artisans</h1>
   <p align="center">
     <strong>Elevating natural burlap into timeless masterpieces.</strong>
     <br />
@@ -83,7 +83,7 @@ npm run dev
 Are you looking to build a high-end, luxury website like this for your own products, brand, or business? 
 
 We offer professional, end-to-end custom web development services tailored to your specific aesthetic and technical needs. 
-- **Contact Us:** [business@codevits.com](mailto:business@codevits.com)
+- **Contact Us:** [business@kinterafore.com](mailto:business@kinterafore.com)
 - **Turnaround Time:** Minimum of 2 days (duration varies depending on feature complexity, custom requests, and database integrations).
 
 Let's collaborate to elevate your digital presence to the next level.
@@ -93,5 +93,5 @@ The **Kiokilho** brand name, logos, and physical product details belong exclusiv
 
 <hr />
 <div align="center">
-  <small>Developed by PT Codevits Innovation Indonesia | © 2026</small>
+  <small>Developed by PT Kinteraforé Technologies and Innovation | © 2026</small>
 </div>
